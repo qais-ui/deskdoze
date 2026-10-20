@@ -1,0 +1,246 @@
+{
+  "version": 1,
+  "root": "<synthetic-demo-folder>",
+  "created": "2026-10-20T22:23:46.418Z",
+  "model": "Xenova/all-MiniLM-L6-v2",
+  "offline": true,
+  "threshold": 0.48,
+  "elapsedMs": 860,
+  "skipped": [
+    "ignore.bin"
+  ],
+  "groups": [
+    {
+      "title": "Balcony plant supplies",
+      "folder": "doze-balcony-plant-supplies-e17ff2",
+      "confidence": 0.7409717845582544,
+      "files": [
+        {
+          "name": "note-01.md",
+          "sha256": "4520756d3ec42581504329122afabadd513a9edb7cabcb4085514cef5fb0a063",
+          "bytes": 156,
+          "title": "Balcony garden",
+          "actions": [
+            {
+              "line": 3,
+              "quote": "- [ ] Water tomatoes.",
+              "truncated": false
+            },
+            {
+              "line": 4,
+              "quote": "- [ ] Buy a larger plant pot.",
+              "truncated": false
+            }
+          ],
+          "excerpt": "# Balcony garden\nThe tomato plants on the balcony need watering. Their soil dries out in the afternoon.\n- [ ] Water tomatoes.\n- [ ] Buy a larger plant pot.\n",
+          "excerptTruncated": false
+        },
+        {
+          "name": "note-02.txt",
+          "sha256": "a5b536b4052b4f39fa2d3b53f3ebaac4ea3cca1b332b7229c7212426fd9406a6",
+          "bytes": 139,
+          "title": "Balcony plant supplies",
+          "actions": [
+            {
+              "line": 3,
+              "quote": "TODO: Check the compost bag.",
+              "truncated": false
+            }
+          ],
+          "excerpt": "Balcony plant supplies\nTomato seedlings need a larger pot, compost and a watering can for the balcony garden.\nTODO: Check the compost bag.\n",
+          "excerptTruncated": false
+        }
+      ],
+      "nextStep": {
+        "line": 3,
+        "quote": "- [ ] Water tomatoes.",
+        "truncated": false,
+        "source": "note-01.md"
+      },
+      "actions": [
+        {
+          "line": 3,
+          "quote": "- [ ] Water tomatoes.",
+          "truncated": false,
+          "source": "note-01.md"
+        },
+        {
+          "line": 3,
+          "quote": "TODO: Check the compost bag.",
+          "truncated": false,
+          "source": "note-02.txt"
+        },
+        {
+          "line": 4,
+          "quote": "- [ ] Buy a larger plant pot.",
+          "truncated": false,
+          "source": "note-01.md"
+        }
+      ]
+    },
+    {
+      "title": "Bicycle repair",
+      "folder": "doze-bicycle-repair-05bab3",
+      "confidence": 0.5945392328978784,
+      "files": [
+        {
+          "name": "note-03.md",
+          "sha256": "ab6a36268db2d7e79b8a0d2fcb3a5b1598fa66919907c584b4fe8f338951dacb",
+          "bytes": 136,
+          "title": "Bicycle repair",
+          "actions": [
+            {
+              "line": 3,
+              "quote": "- [ ] Find the bike pump.",
+              "truncated": false
+            }
+          ],
+          "excerpt": "# Bicycle repair\nThe bicycle rear tyre is flat. The bike needs a new inner tube and the brakes need checking.\n- [ ] Find the bike pump.\n",
+          "excerptTruncated": false
+        },
+        {
+          "name": "note-04.txt",
+          "sha256": "b8988223352286364a3d4a267119bb4f5326df7aabd679f7aa22b14a64321f68",
+          "bytes": 154,
+          "title": "Bicycle workshop notes",
+          "actions": [
+            {
+              "line": 3,
+              "quote": "NEXT: Read the tyre size.",
+              "truncated": false
+            }
+          ],
+          "excerpt": "Bicycle workshop notes\nRepair the punctured rear bicycle tire. Check the inner tube size before visiting the cycle repair shop.\nNEXT: Read the tyre size.\n",
+          "excerptTruncated": false
+        }
+      ],
+      "nextStep": {
+        "line": 3,
+        "quote": "NEXT: Read the tyre size.",
+        "truncated": false,
+        "source": "note-04.txt"
+      },
+      "actions": [
+        {
+          "line": 3,
+          "quote": "NEXT: Read the tyre size.",
+          "truncated": false,
+          "source": "note-04.txt"
+        },
+        {
+          "line": 3,
+          "quote": "- [ ] Find the bike pump.",
+          "truncated": false,
+          "source": "note-03.md"
+        }
+      ]
+    },
+    {
+      "title": "Weekend soup",
+      "folder": "doze-weekend-soup-6c9bd4",
+      "confidence": 0.8579163621507987,
+      "files": [
+        {
+          "name": "note-05.md",
+          "sha256": "632ccc6cb17cd1d28dc6a1846cb1bcda7c297b3d5f76f786f66031ddcfef0768",
+          "bytes": 143,
+          "title": "Weekend soup",
+          "actions": [
+            {
+              "line": 3,
+              "quote": "- [ ] Rinse lentils.",
+              "truncated": false
+            }
+          ],
+          "excerpt": "# Weekend soup\nLentil soup recipe: lentils, carrots, onion, cumin and vegetable stock. Simmer until the lentils are soft.\n- [ ] Rinse lentils.\n",
+          "excerptTruncated": false
+        },
+        {
+          "name": "note-06.txt",
+          "sha256": "a7ed4bd70b12ee844bde92786dcf13ef1c095c67e7a04cb00d4324bbff2c5e6d",
+          "bytes": 165,
+          "title": "Soup shopping",
+          "actions": [
+            {
+              "line": 3,
+              "quote": "TODO: Check lentils in pantry.",
+              "truncated": false
+            }
+          ],
+          "excerpt": "Soup shopping\nFor the lentil soup recipe, buy red lentils, carrots, onions and vegetable stock. There is already cumin in the pantry.\nTODO: Check lentils in pantry.\n",
+          "excerptTruncated": false
+        }
+      ],
+      "nextStep": {
+        "line": 3,
+        "quote": "- [ ] Rinse lentils.",
+        "truncated": false,
+        "source": "note-05.md"
+      },
+      "actions": [
+        {
+          "line": 3,
+          "quote": "- [ ] Rinse lentils.",
+          "truncated": false,
+          "source": "note-05.md"
+        },
+        {
+          "line": 3,
+          "quote": "TODO: Check lentils in pantry.",
+          "truncated": false,
+          "source": "note-06.txt"
+        }
+      ]
+    },
+    {
+      "title": "Astronomy",
+      "folder": "doze-astronomy-d5b8f9",
+      "confidence": null,
+      "files": [
+        {
+          "name": "note-07.md",
+          "sha256": "51b444e19914b8fc7d65e9d705da47aad1eb04359ba5dbaf57208184b0cceda8",
+          "bytes": 90,
+          "title": "Astronomy",
+          "actions": [],
+          "excerpt": "# Astronomy\nSaturn has rings made of ice and rock. Its moon Titan has a thick atmosphere.\n",
+          "excerptTruncated": false
+        }
+      ],
+      "nextStep": null,
+      "actions": []
+    }
+  ],
+  "moves": [
+    {
+      "from": "note-01.md",
+      "to": "doze-balcony-plant-supplies-e17ff2/note-01.md",
+      "sha256": "4520756d3ec42581504329122afabadd513a9edb7cabcb4085514cef5fb0a063"
+    },
+    {
+      "from": "note-02.txt",
+      "to": "doze-balcony-plant-supplies-e17ff2/note-02.txt",
+      "sha256": "a5b536b4052b4f39fa2d3b53f3ebaac4ea3cca1b332b7229c7212426fd9406a6"
+    },
+    {
+      "from": "note-03.md",
+      "to": "doze-bicycle-repair-05bab3/note-03.md",
+      "sha256": "ab6a36268db2d7e79b8a0d2fcb3a5b1598fa66919907c584b4fe8f338951dacb"
+    },
+    {
+      "from": "note-04.txt",
+      "to": "doze-bicycle-repair-05bab3/note-04.txt",
+      "sha256": "b8988223352286364a3d4a267119bb4f5326df7aabd679f7aa22b14a64321f68"
+    },
+    {
+      "from": "note-05.md",
+      "to": "doze-weekend-soup-6c9bd4/note-05.md",
+      "sha256": "632ccc6cb17cd1d28dc6a1846cb1bcda7c297b3d5f76f786f66031ddcfef0768"
+    },
+    {
+      "from": "note-06.txt",
+      "to": "doze-weekend-soup-6c9bd4/note-06.txt",
+      "sha256": "a7ed4bd70b12ee844bde92786dcf13ef1c095c67e7a04cb00d4324bbff2c5e6d"
+    }
+  ]
+}

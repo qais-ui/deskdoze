@@ -1,0 +1,27 @@
+{
+  "model": "Xenova/all-MiniLM-L6-v2",
+  "offline": true,
+  "notes": 7,
+  "groups": [
+    [
+      "note-01.md",
+      "note-02.txt"
+    ],
+    [
+      "note-03.md",
+      "note-04.txt"
+    ],
+    [
+      "note-05.md",
+      "note-06.txt"
+    ],
+    [
+      "note-07.md"
+    ]
+  ],
+  "moves": 6,
+  "elapsedMs": 860,
+  "contentPreserved": true,
+  "undoRestoredAll": true,
+  "unsupportedFileUntouched": true
+}
