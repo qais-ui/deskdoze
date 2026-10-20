@@ -20,6 +20,8 @@ The scope is deliberately small: English text and Markdown notes, no accounts, n
 
 [Watch the 45-second demo and inspect its report](https://qais-ui.github.io/deskdoze/). This public page shows a recorded synthetic run; live analysis runs locally from the repository.
 
+![DeskDoze report showing related notes and source-grounded next steps](https://qais-ui.github.io/deskdoze/report.png)
+
 The demonstration uses seven synthetic notes named `note-01.md` through `note-07.md` (with some `.txt` files). Their filenames do not announce their topics. The real embedding model groups them into gardening, bicycle repair and soup preparation, leaving an unrelated astronomy note separate.
 
 For the garden group, the suggested step is “- [ ] Water tomatoes.” It comes from line 3 of `note-01.md`. It is not a generated instruction. For the astronomy note, DeskDoze says it found no explicit next step.
@@ -58,4 +60,4 @@ The intended payoff is fewer small decisions: open one report, choose one writte
 
 ## Build Transparency
 
-This new project was built with Codex assistance during the challenge window. The implementation, synthetic fixtures, tests and submission draft were AI-assisted. The demo uses actual local model inference and recorded verification results. No optional partner prize category is claimed, and no private agent transcript is published.
+This new project was built during the challenge window. I selected the challenge and authorized the work; Codex generated the implementation, synthetic fixtures, tests and submission text. The demo uses actual local model inference and recorded verification results. No optional partner prize category is claimed, and no private agent transcript is published.
