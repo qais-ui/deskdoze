@@ -1,6 +1,6 @@
 ---
 title: "DeskDoze: tidy your notes, leave yourself one small task"
-published: false
+published: true
 tags: devchallenge, hf26challenge, opensource, ai
 ---
 

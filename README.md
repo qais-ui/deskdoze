@@ -2,7 +2,7 @@
 
 **Let your notes find each other.** A local AI tool that groups related text notes, quotes one small unfinished task per group, and tidies the files only after you review its plan.
 
-[Watch the demo and inspect its report](https://qais-ui.github.io/deskdoze/) · [Submission draft](SUBMISSION.md)
+[Watch the demo and inspect its report](https://qais-ui.github.io/deskdoze/) · [Read the DEV entry](https://dev.to/qais_ahmed_ce04207d1d815e/deskdoze-tidy-your-notes-leave-yourself-one-small-task-f59)
 
 ![DeskDoze demo](demo/video-poster.png)
 
