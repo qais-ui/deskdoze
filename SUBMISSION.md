@@ -1,63 +1,64 @@
 ---
-title: "DeskDoze: let your notes find each other, then do one small thing"
+title: "DeskDoze: tidy your notes, leave yourself one small task"
 published: false
 tags: devchallenge, hf26challenge, opensource, ai
 ---
 
-*This is a submission for the [Hacktoberfest Open-Source AI Challenge Week 3: Slow and Steady](https://dev.to/challenges/hacktoberfest-week3-2026-10-19).*
+*A submission for the [Hacktoberfest Open-Source AI Challenge, Week 3: Slow and Steady](https://dev.to/challenges/hacktoberfest-week3-2026-10-19).*
 
 ## What I Built
 
-A folder of loose notes can be a pile of decisions waiting to happen. Which notes belong together? What was I trying to do? Is cleaning the folder going to create more work than it saves?
+DeskDoze sorts loose text notes into related groups and picks out a task already written in each group. It runs on your computer and shows you the plan before moving a file.
 
-DeskDoze gives those notes a gentle reset. It runs a small open-weight AI model locally, gathers related text files into suggested groups, and surfaces one explicit unfinished task per group. Every task points back to the file and line it came from.
+The useful part is finding your way back into something. Two notes about a bicycle repair belong together. One says to find the pump; the other says to read the tyre size. DeskDoze brings them into one view, with a next step and its source line beside it.
 
-The result is a quiet HTML report: a few groups, a few written next steps, and a preview of the file moves. Nothing moves until the plan is applied. The resulting journal can put the files back.
-
-The scope is deliberately small: English text and Markdown notes, no accounts, no cloud inference, no background service to babysit.
+If a note has no written task, it stays that way. If it has no close match, it stays separate. You can apply the proposed moves or leave the folder alone. Every applied plan has an undo journal.
 
 ## Demo
 
-[Watch the 45-second demo and inspect its report](https://qais-ui.github.io/deskdoze/). This public page shows a recorded synthetic run; live analysis runs locally from the repository.
+[Try the example and watch the 45-second demo](https://qais-ui.github.io/deskdoze/).
 
-![DeskDoze report showing related notes and source-grounded next steps](https://qais-ui.github.io/deskdoze/report.png)
+![DeskDoze showing related notes and a next step for each group](https://qais-ui.github.io/deskdoze/report.png?v=2)
 
-The demonstration uses seven synthetic notes named `note-01.md` through `note-07.md` (with some `.txt` files). Their filenames do not announce their topics. The real embedding model groups them into gardening, bicycle repair and soup preparation, leaving an unrelated astronomy note separate.
+The example starts with seven sample notes whose filenames give little away. The model finds three pairs: gardening, bicycle repair, and soup preparation. An astronomy note stays separate.
 
-For the garden group, the suggested step is “- [ ] Water tomatoes.” It comes from line 3 of `note-01.md`. It is not a generated instruction. For the astronomy note, DeskDoze says it found no explicit next step.
+The gardening group shows **Water tomatoes**, taken from line 3 of `note-01.md`. The soup group shows **Rinse lentils**. Neither task was invented by a language model.
 
-The demo applies six moves, checks the contents, undoes the moves, and compares every original byte. An unsupported file stays untouched. The recording presents actual command results from the synthetic demo; it is not a recording of personal files.
+The demo also applies six moves, checks their contents, undoes them, and compares the restored files with the originals. All bytes match. An unsupported file is left alone. The video presents those recorded results.
 
 ## Code
 
-[Source code, tests and reproducible demo on GitHub](https://github.com/qais-ui/deskdoze). The complete project is MIT-licensed. Run `npm ci`, then `npm run demo`. Once the model is cached, run `npm run demo -- --offline`.
+[GitHub repository](https://github.com/qais-ui/deskdoze) · MIT license
+
+```sh
+npm ci
+npm run demo
+```
+
+Open `demo/report.html`. Once the model is downloaded, the same demo runs with `npm run demo -- --offline`.
 
 ## How I Built It
 
-The AI core is [all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2), using [Xenova's ONNX conversion](https://huggingface.co/Xenova/all-MiniLM-L6-v2) through [Transformers.js](https://github.com/huggingface/transformers.js). These open components do the semantic work: converting each note's opening excerpt into a vector so related notes can find each other even when their filenames are unhelpful.
+The grouping uses [all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2), with [Xenova's ONNX weights](https://huggingface.co/Xenova/all-MiniLM-L6-v2) and [Transformers.js](https://github.com/huggingface/transformers.js). It embeds each note's opening excerpt, then compares the vectors by cosine similarity.
 
-Complete-link clustering merges groups only when every cross-group pair exceeds the similarity threshold. That choice matters: a single bridge note should not drag two unrelated projects into one folder. Singleton notes are left in place. The group label comes from a representative source note, rather than a generated title.
+Every pair in a group must exceed the threshold. This avoids joining unrelated notes just because one note happens to connect them. Group names come from a representative note's heading; filenames are preserved.
 
-I separated semantic grouping from task extraction. The model decides which notes seem related; ordinary code finds unchecked Markdown tasks and lines beginning with `TODO:` or `NEXT:`. It selects the shortest written task by word count. “Shortest” is not a claim that a task is quickest or most important, but it provides a simple place to start without fabricating an obligation.
+Task extraction is simpler. It reads unchecked Markdown tasks and lines beginning with `TODO:` or `NEXT:`, then chooses the shortest by word count. The report includes the filename, line number, and original text. Shortest does not necessarily mean easiest, but it offers a clear place to start.
 
-The file-moving side is equally conservative. Plans store content hashes. Applying a plan checks for changed sources, occupied destinations and unsafe paths before moving anything. A write-ahead journal supports recovery if a run stops partway through. Undo refuses to overwrite a file that has been edited.
-
-Tests exercise those failure cases, including an interrupted copy with both source and destination present. A separate integration demo exercises the actual model and the apply/undo round trip.
+File moves use content hashes, checks for occupied destinations, and a journal written before the first move. Undo checks for edits before restoring anything. Tests cover changed files, path traversal, junctions, destination conflicts, and an interrupted move with both copies present.
 
 ## Why Does Open Innovation Matter?
 
-These notes do not need to become someone else's API request. After the initial model download, DeskDoze can analyze them locally using the cached weights. There is no per-note inference bill or API credential to maintain. Local computation still uses electricity and hardware; “no API bill” is not the same as zero resource cost.
+Notes often contain things you would rather keep on your own machine. With downloadable weights and local inference, their contents can stay there. After setup, the cached model works offline, with no API key or per-request bill.
 
-The model, inference framework and application code can be inspected and changed. The clustering threshold is exposed. A different embedding model can be integrated without rebuilding the file-safety layer. Keeping inference local is a design benefit of this implementation; it is not a claim that every closed model requires cloud inference.
+The grouping code and threshold are open too. You can inspect a questionable match, tighten the threshold, or integrate another embedding model. The model performs the semantic grouping; sorting these filenames by extension would not recover the three topics.
 
-The limitations are visible too. The model sees only the opening excerpt of each note, and its tokenizer can truncate further. The current version does not read PDFs, images, Office files or nested folders. Semantic similarity can be wrong, especially outside the English-focused examples. That is why the output is a reviewable plan.
+There are limits. This version reads top-level English `.txt` and `.md` files. Only the first 900 characters enter the embedding pipeline, and tokenization can shorten that further. Long or mixed-topic notes can be grouped badly. The review step matters.
 
 ## The Lazy Payoff
 
-On the synthetic example, seven loose notes become four reviewable groups, with three explicit next steps. The test run proves that the grouping and reversible movement work on that example. It does not prove how many minutes a person saves in everyday use; no user study has been run.
+In the sample, seven loose notes become four groups and three written next steps. That gives you less to sort through before doing something useful.
 
-The intended payoff is fewer small decisions: open one report, choose one written task, and leave the rest for later. A tidy folder should not become another project to manage.
+There is no claim of hours saved: this is a tested prototype with synthetic examples, not a user study. Its job is small—gather the notes, show the next step, and let you get on with your day.
 
-## Build Transparency
-
-This new project was built during the challenge window. I selected the challenge and authorized the work; Codex generated the implementation, synthetic fixtures, tests and submission text. The demo uses actual local model inference and recorded verification results. No optional partner prize category is claimed, and no private agent transcript is published.
+*Built and written with Codex. All demo notes are synthetic; verification results come from an actual local run.*

@@ -20,24 +20,24 @@ def frame(title, subtitle):
     im = Image.new('RGB', (W, H), BG)
     d = ImageDraw.Draw(im)
     d.text((64, 30), 'DeskDoze', font=font(24, True), fill=INK)
-    d.text((870, 35), 'LOCAL AI / SYNTHETIC DEMO', font=font(16), fill=INK)
+    d.text((910, 35), 'EXAMPLE FOLDER / 7 NOTES', font=font(16), fill=INK)
     d.line((64, 82, W-64, 82), fill='#cfd5c7', width=2)
     d.text((64, 110), title, font=font(44, True), fill=INK)
     d.text((64, 178), subtitle, font=font(22), fill='#596457')
-    d.text((64, 672), 'Actual inference and file checks · Evidence playback, not a live screencast', font=font(17), fill='#596457')
+    d.text((64, 672), 'Recorded local run · Sample notes', font=font(17), fill='#596457')
     return im, d
 
 scenes = []
-im, d = frame('Let your notes find each other.', 'Seven loose notes. One gentle reset. No cloud inference.')
+im, d = frame('A little room to think.', 'Seven loose notes, ready to sort.')
 for i, name in enumerate(f['name'] for g in DATA['groups'] for f in g['files']):
     d.text((90, 245+i*48), name, font=font(27), fill=INK)
 d.rounded_rectangle((650, 260, 1170, 560), radius=24, fill=GREEN)
-d.text((690, 300), 'First: preview.', font=font(38,True), fill=INK)
-d.text((690, 365), 'Then: choose a written task.', font=font(23), fill=INK)
-d.text((690, 418), 'Apply only when ready.', font=font(23), fill=INK)
+d.text((690, 300), 'Start with a preview.', font=font(32,True), fill=INK)
+d.text((690, 365), 'Choose one small task.', font=font(23), fill=INK)
+d.text((690, 418), 'Tidy up when ready.', font=font(23), fill=INK)
 scenes.append((im, 7))
 
-im, d = frame('The open model does the grouping.', 'all-MiniLM-L6-v2 · Transformers.js · ONNX Runtime on CPU')
+im, d = frame('Related notes, together.', 'Grouped locally with all-MiniLM-L6-v2 and Transformers.js')
 for i, g in enumerate(DATA['groups']):
     y = 242+i*94
     d.rounded_rectangle((64,y,1216,y+78),radius=12,fill='#fffef8')
@@ -45,11 +45,13 @@ for i, g in enumerate(DATA['groups']):
     d.text((88,y+43), ' + '.join(f['name'] for f in g['files']),font=font(19),fill='#596457')
 scenes.append((im, 8))
 
-im, d = frame('One small step, with a source.', 'No generated tasks. These lines were already in the notes.')
+im, d = frame('A next step you already wrote.', 'Each task points back to its file and line number.')
 for i,g in enumerate(DATA['groups'][:3]):
     a=g['nextStep']; y=248+i*126
     d.rounded_rectangle((64,y,1216,y+105),radius=14,fill=GREEN)
-    d.text((88,y+12),a['quote'],font=font(30),fill=INK)
+    import re
+    task=re.sub(r'^\s*(?:[-*]\s*\[ \]\s*|(?:TODO|NEXT)\s*:\s*)','',a['quote'],flags=re.I)
+    d.text((88,y+12),task,font=font(30),fill=INK)
     d.text((88,y+62),f"{a['source']} : line {a['line']}",font=font(21),fill='#596457')
 scenes.append((im, 8))
 
@@ -75,7 +77,7 @@ scenes.append((im, 8))
 im, d = frame('Try it at your own pace.', 'Node.js 20+ · MIT project · Open model downloaded on first run')
 for i,line in enumerate(['npm ci', 'npm run demo', 'npm run demo -- --offline', 'Open demo/report.html']):
     d.text((90,255+i*74),line,font=font(32,True),fill=INK)
-d.text((90,575),'Small synthetic example; no everyday time-saving claim.',font=font(21),fill='#596457')
+d.text((90,575),'A small tool for text and Markdown notes.',font=font(21),fill='#596457')
 scenes.append((im, 7))
 
 out=ROOT/'demo/deskdoze-demo.mp4'

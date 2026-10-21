@@ -1,11 +1,11 @@
 {
   "version": 1,
   "root": "<synthetic-demo-folder>",
-  "created": "2026-10-20T22:23:46.418Z",
+  "created": "2026-10-21T16:31:37.067Z",
   "model": "Xenova/all-MiniLM-L6-v2",
   "offline": true,
   "threshold": 0.48,
-  "elapsedMs": 860,
+  "elapsedMs": 1096,
   "skipped": [
     "ignore.bin"
   ],
